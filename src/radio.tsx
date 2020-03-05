@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {TouchableOpacity} from "react-native";
+import {TouchableOpacity, View} from "react-native";
 
 type tStateData<T> = {
     data : T,
@@ -17,7 +17,7 @@ interface IProps<T>{
     data : T[],                                         //数据（选择列表）
     renderUnSelectItem: (item : T) => JSX.Element,      //渲染未选中组件
     renderSelectedItem: (item : T) => JSX.Element,      //渲染已选中组件
-    onSelect?: (items : T, index : number) => void,     //选中事件
+    onSelect?: (item : T, index : number) => void,      //选中事件
     initSelectIndex? : number,                          //默认选中下标
     extractKey? : (item : T) => string,                 //从item中提取值作为key
 }
@@ -74,7 +74,9 @@ export class Radio<T> extends Component<IProps<T>,IState<T>>{
                 {
                     data.map((value, index) => {
                         if(value.selected){
-                            return renderSelectedItem(value.data)
+                            return <View key={extractKey?.(value.data) ?? JSON.stringify(value.data)}>
+                                renderSelectedItem(value.data)
+                            </View>
                         }else{
                             return <TouchableOpacity key={extractKey?.(value.data) ?? JSON.stringify(value.data)} onPress={()=>{
                                 let nextData : tStateData<T>[] = data.map((value1, index1) => {

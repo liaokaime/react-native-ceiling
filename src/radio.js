@@ -69,12 +69,12 @@ var Radio = /** @class */ (function (_super) {
         var _a = this.props, renderSelectedItem = _a.renderSelectedItem, renderUnSelectItem = _a.renderUnSelectItem, onSelect = _a.onSelect, extractKey = _a.extractKey;
         var data = this.state.data;
         return (react_1.default.createElement(react_1.default.Fragment, null, data.map(function (value, index) {
-            var _a;
+            var _a, _b;
             if (value.selected) {
-                return renderSelectedItem(value.data);
+                return react_1.default.createElement(react_native_1.View, { key: (_a = extractKey === null || extractKey === void 0 ? void 0 : extractKey(value.data)) !== null && _a !== void 0 ? _a : JSON.stringify(value.data) }, "renderSelectedItem(value.data)");
             }
             else {
-                return react_1.default.createElement(react_native_1.TouchableOpacity, { key: (_a = extractKey === null || extractKey === void 0 ? void 0 : extractKey(value.data)) !== null && _a !== void 0 ? _a : JSON.stringify(value.data), onPress: function () {
+                return react_1.default.createElement(react_native_1.TouchableOpacity, { key: (_b = extractKey === null || extractKey === void 0 ? void 0 : extractKey(value.data)) !== null && _b !== void 0 ? _b : JSON.stringify(value.data), onPress: function () {
                         var nextData = data.map(function (value1, index1) {
                             return {
                                 data: value1.data,
