@@ -12,9 +12,9 @@ interface ITab {
 }
 
 interface IProps{
-    TabsClass : new(props : ITab) => Component<ITab>
-    views : JSX.Element[]
-    ListHeaderComponent : JSX.Element
+    TabsClass : new(props : ITab) => Component<ITab>        //tabs组件Class，该Class必须传入props.onSwitch回调，调用即可切换"待切换页面[]"
+    views : JSX.Element[]                                   //待切换页面[]，onSwitch的page即该数组的下标
+    ListHeaderComponent : JSX.Element                       //首部内容
 }
 
 interface IState{
